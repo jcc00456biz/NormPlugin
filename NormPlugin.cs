@@ -182,7 +182,7 @@ namespace MusicBeePlugin
 
             string a = args.ToString();
             char delimiterChars;
-            if ( a == Menu0_0 )
+            if ( a == Menu0_2 )
             {
                 delimiterChars = ',';
             }
