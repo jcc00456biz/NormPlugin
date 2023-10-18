@@ -86,6 +86,20 @@ namespace MusicBeePlugin
             ret_str = ret_str.Replace( "－", "-" ).Replace( "￣", "~" );
             return ret_str;
         }
+        public static string NLineTrim( string org_str )
+        {
+            string [] wordList = org_str.Replace( "\r\n", "\n" ).Split( new[] { '\n', '\r' } );
+            string ret_str = "";
+            foreach ( string w in wordList )
+            {
+                ret_str += w.Trim() + "\r\n";
+            }
+            if ( ret_str.Length != 0 )
+            {
+                return ret_str;
+            }
+            return org_str;
+        }
         public static string Zen2Han( string org_str )
         {
             string ret_str = org_str;

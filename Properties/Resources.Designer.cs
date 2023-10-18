@@ -79,7 +79,7 @@ namespace MusicBeePlugin.Properties {
         }
         
         /// <summary>
-        ///   Track name change に類似しているローカライズされた文字列を検索します。
+        ///   NormPlugin に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Menu0 {
             get {
@@ -88,7 +88,7 @@ namespace MusicBeePlugin.Properties {
         }
         
         /// <summary>
-        ///   Zenkaku =&gt; Hankaku に類似しているローカライズされた文字列を検索します。
+        ///   Lyrics:Zenkaku =&gt; Hankaku に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Menu0_0 {
             get {
@@ -97,7 +97,7 @@ namespace MusicBeePlugin.Properties {
         }
         
         /// <summary>
-        ///   Import from text (comma) に類似しているローカライズされた文字列を検索します。
+        ///   Track:Zenkaku =&gt; Hankaku に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Menu0_1 {
             get {
@@ -106,7 +106,7 @@ namespace MusicBeePlugin.Properties {
         }
         
         /// <summary>
-        ///   Import from text (TAB) に類似しているローカライズされた文字列を検索します。
+        ///   Track:Import from text (comma) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Menu0_2 {
             get {
@@ -115,7 +115,43 @@ namespace MusicBeePlugin.Properties {
         }
         
         /// <summary>
-        ///   Plugin to change track names に類似しているローカライズされた文字列を検索します。
+        ///   Track:Import from text (TAB) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Menu0_3 {
+            get {
+                return ResourceManager.GetString("Menu0_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Changes have been made. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Message1 {
+            get {
+                return ResourceManager.GetString("Message1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Nothing has changed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Message2 {
+            get {
+                return ResourceManager.GetString("Message2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Processing completed に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MessageTitle {
+            get {
+                return ResourceManager.GetString("MessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Plugin to change lyrics &amp; track names に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MyDescription {
             get {
@@ -124,7 +160,7 @@ namespace MusicBeePlugin.Properties {
         }
         
         /// <summary>
-        ///   Track name change plugin に類似しているローカライズされた文字列を検索します。
+        ///   Lyrics &amp; Track name change plugin に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MyName {
             get {

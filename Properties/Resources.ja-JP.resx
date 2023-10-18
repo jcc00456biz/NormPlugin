@@ -124,22 +124,34 @@
     <value>すべてのファイル</value>
   </data>
   <data name="Menu0" xml:space="preserve">
-    <value>トラック名変更</value>
+    <value>正規化プラグイン</value>
   </data>
   <data name="Menu0_0" xml:space="preserve">
-    <value>全角 =&gt; 半角</value>
+    <value>歌詞:全角 =&gt; 半角</value>
   </data>
   <data name="Menu0_1" xml:space="preserve">
-    <value>テキストからインポート（カンマ区切り）</value>
+    <value>トラック名:全角 =&gt; 半角</value>
   </data>
   <data name="Menu0_2" xml:space="preserve">
-    <value>テキストからインポート（TAB区切り）</value>
+    <value>トラック名:テキストからインポート（カンマ区切り）</value>
+  </data>
+  <data name="Menu0_3" xml:space="preserve">
+    <value>トラック名:テキストからインポート（TAB区切り）</value>
+  </data>
+  <data name="Message1" xml:space="preserve">
+    <value>変更を実施しました。</value>
+  </data>
+  <data name="Message2" xml:space="preserve">
+    <value>変更したものはありません。</value>
+  </data>
+  <data name="MessageTitle" xml:space="preserve">
+    <value>処理完了</value>
   </data>
   <data name="MyDescription" xml:space="preserve">
-    <value>トラック名を変更するプラグイン</value>
+    <value>歌詞&amp;トラック名を変更するプラグイン</value>
   </data>
   <data name="MyName" xml:space="preserve">
-    <value>トラック名変更プラグイン</value>
+    <value>歌詞&amp;トラック名変更プラグイン</value>
   </data>
   <data name="OpenFileTitle" xml:space="preserve">
     <value>開くファイルを選択してください</value>

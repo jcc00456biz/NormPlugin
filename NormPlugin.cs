@@ -10,6 +10,7 @@ namespace MusicBeePlugin
 {
     public partial class Plugin
     {
+        //private const string Provider = "Lyrics & Track name change plugin";
         private MusicBeeApiInterface mbApiInterface;
         private PluginInfo about = new PluginInfo();
 
@@ -17,6 +18,7 @@ namespace MusicBeePlugin
         private string Menu0_0 = "context.Main/" + Properties.Resources.Menu0 + "/" + Properties.Resources.Menu0_0;
         private string Menu0_1 = "context.Main/" + Properties.Resources.Menu0 + "/" + Properties.Resources.Menu0_1;
         private string Menu0_2 = "context.Main/" + Properties.Resources.Menu0 + "/" + Properties.Resources.Menu0_2;
+        private string Menu0_3 = "context.Main/" + Properties.Resources.Menu0 + "/" + Properties.Resources.Menu0_3;
 
         private Logger Mylog = null;
 
@@ -39,12 +41,21 @@ namespace MusicBeePlugin
             about.ConfigurationPanelHeight = 0;   // height in pixels that musicbee should reserve in a panel for config settings. When set, a handle to an empty panel will be passed to the Configure function
 
             mbApiInterface.MB_AddMenuItem( Menu0, null, null );
-            mbApiInterface.MB_AddMenuItem( Menu0_0, null, Zenkaku2Hankaku );
-            mbApiInterface.MB_AddMenuItem( Menu0_1, null, ImportTextFile );
+            mbApiInterface.MB_AddMenuItem( Menu0_0, null, LyricsZenkaku2Hankaku );
+            mbApiInterface.MB_AddMenuItem( Menu0_1, null, TrackZenkaku2Hankaku );
             mbApiInterface.MB_AddMenuItem( Menu0_2, null, ImportTextFile );
+            mbApiInterface.MB_AddMenuItem( Menu0_3, null, ImportTextFile );
 
-            Mylog = Logger.GetInstance( mbApiInterface.Setting_GetPersistentStoragePath(), "TrackRename" );
+            Mylog = Logger.GetInstance( mbApiInterface.Setting_GetPersistentStoragePath(), "NormPlugin" );
             return about;
+        }
+        private void DispMsg(string msg)
+        {
+            MessageBox.Show( msg,
+                Properties.Resources.MessageTitle,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Asterisk );
+            return;
         }
         private bool IsPlay()
         {
@@ -60,8 +71,62 @@ namespace MusicBeePlugin
             }
             return false;
         }
+        private void LyricsZenkaku2Hankaku( object sender, EventArgs args )
+        {
+            if ( IsPlay() )
+            {
+                return;
+            }
 
-        private void Zenkaku2Hankaku( object sender, EventArgs args )
+            // 選択中のものを取得
+            if ( !mbApiInterface.Library_QueryFilesEx( "domain=SelectedFiles", out string[] files ) )
+                files = new string[0];
+
+            // 未選択の場合
+            if ( files.Length == 0 )
+            {
+                return;
+            }
+            string at;
+            string tt;
+            string lyrics;
+            string n_lyrics;
+            bool refresh_f = false;
+            foreach ( string file in files )
+            {
+                at = mbApiInterface.Library_GetFileTag( file, MetaDataType.Album );
+                tt = mbApiInterface.Library_GetFileTag( file, MetaDataType.TrackTitle );
+                lyrics = mbApiInterface.Library_GetLyrics( file, LyricsType.UnSynchronised );
+                if ( lyrics != null )
+                {
+                    if ( lyrics.Length != 0 )
+                    {
+                        n_lyrics = StrConv.Zen2Han( lyrics );
+                        n_lyrics = StrConv.NLineTrim( n_lyrics );
+                        if ( lyrics != n_lyrics )
+                        {
+                            mbApiInterface.Library_SetFileTag( file, MetaDataType.Lyrics, n_lyrics );
+                            mbApiInterface.Library_CommitTagsToFile( file );
+                            // Log
+                            string log_str = string.Format( "[{0}][{1}]=>[{2}]", at, tt, "Change" );
+                            Mylog.LogOutput( log_str );
+                            refresh_f = true;
+                        }
+                    }
+                }
+            }
+            if ( refresh_f == true )
+            {
+                mbApiInterface.MB_RefreshPanels();
+                DispMsg( Properties.Resources.Message1 );
+            }
+            else
+            {
+                DispMsg( Properties.Resources.Message2 );
+            }
+            return;
+        }
+        private void TrackZenkaku2Hankaku( object sender, EventArgs args )
         {
             if ( IsPlay() )
             {
@@ -95,14 +160,18 @@ namespace MusicBeePlugin
                     string log_str = string.Format( "[{0}][{1}]=>[{2}]", at, tt1, tt2 );
                     Mylog.LogOutput( log_str );
                     refresh_f = true;
-
                 }
-                if ( refresh_f == true )
-                {
-                    mbApiInterface.MB_RefreshPanels();
-                }
-
             }
+            if ( refresh_f == true )
+            {
+                mbApiInterface.MB_RefreshPanels();
+                DispMsg( Properties.Resources.Message1 );
+            }
+            else
+            {
+                DispMsg( Properties.Resources.Message2 );
+            }
+            return;
         }
         private void ImportTextFile( object sender, EventArgs args )
         {
@@ -172,8 +241,15 @@ namespace MusicBeePlugin
                 if ( refresh_f == true )
                 {
                     mbApiInterface.MB_RefreshPanels();
+                    DispMsg( Properties.Resources.Message1 );
                 }
+                else
+                {
+                    DispMsg( Properties.Resources.Message2 );
+                }
+                return;
             }
+            return;
         }
         private string SelectFile()
         {
@@ -257,14 +333,25 @@ namespace MusicBeePlugin
         // the providers will be iterated through one by one and passed to the RetrieveLyrics/ RetrieveArtwork function in order set by the user in the MusicBee Tags(2) preferences screen until a match is found
         //public string[] GetProviders()
         //{
-        //    return null;
+        //    return new []{ Provider };
         //}
 
         // return lyrics for the requested artist/title from the requested provider
         // only required if PluginType = LyricsRetrieval
         // return null if no lyrics are found
-        //public string RetrieveLyrics(string sourceFileUrl, string artist, string trackTitle, string album, bool synchronisedPreferred, string provider)
+        // public string RetrieveLyrics(string sourceFileUrl, string artist, string trackTitle, string album, bool synchronisedPreferred, string provider)
         //{
+        //    switch ( provider )
+        //    {
+        //        case Provider:
+        //            try
+        //            {
+        //                ;
+        //            }
+        //            catch { }
+        //            return null;
+        //
+        //    }
         //    return null;
         //}
 

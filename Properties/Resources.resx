@@ -124,22 +124,34 @@
     <value>All files</value>
   </data>
   <data name="Menu0" xml:space="preserve">
-    <value>Track name change</value>
+    <value>NormPlugin</value>
   </data>
   <data name="Menu0_0" xml:space="preserve">
-    <value>Zenkaku =&gt; Hankaku</value>
+    <value>Lyrics:Zenkaku =&gt; Hankaku</value>
   </data>
   <data name="Menu0_1" xml:space="preserve">
-    <value>Import from text (comma)</value>
+    <value>Track:Zenkaku =&gt; Hankaku</value>
   </data>
   <data name="Menu0_2" xml:space="preserve">
-    <value>Import from text (TAB)</value>
+    <value>Track:Import from text (comma)</value>
+  </data>
+  <data name="Menu0_3" xml:space="preserve">
+    <value>Track:Import from text (TAB)</value>
+  </data>
+  <data name="Message1" xml:space="preserve">
+    <value>Changes have been made.</value>
+  </data>
+  <data name="Message2" xml:space="preserve">
+    <value>Nothing has changed.</value>
+  </data>
+  <data name="MessageTitle" xml:space="preserve">
+    <value>Processing completed</value>
   </data>
   <data name="MyDescription" xml:space="preserve">
-    <value>Plugin to change track names</value>
+    <value>Plugin to change lyrics &amp; track names</value>
   </data>
   <data name="MyName" xml:space="preserve">
-    <value>Track name change plugin</value>
+    <value>Lyrics &amp; Track name change plugin</value>
   </data>
   <data name="OpenFileTitle" xml:space="preserve">
     <value>Please select a file to open</value>
